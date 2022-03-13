@@ -7,31 +7,37 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: '',
       celsius: 0,
       fahrenheit: 0
     }
+    this.getFahrenheit = this.getFahrenheit.bind(this);
+    this.getCelsius = this.getCelsius.bind(this);
   }
-  getFahrenheit(event) {
-    const celsius = Number.parseFloat(event.target.value);
-    const fahrenheit = (celsius * 9) / 5 + 32;
-    console.log(`getFahrenheit: ${celsius} ---> ${fahrenheit}`);
-    this.setState({ celsius, fahrenheit});
+  getFahrenheit(celsius) {
+    const c = Number.parseFloat(celsius);
+    const f = (c * 9) / 5 + 32;
+    console.log(`getFahrenheit: ${c} ---> ${f}`);
+    this.setState({ celsius: c, fahrenheit: f});
   }
-  getCelsius(event) {
-    const fahrenheit = Number.parseFloat(event.target.value);
-    const celsius = ((fahrenheit - 32) * 5) / 9;
-    this.setState({ celsius, fahrenheit })
+  getCelsius(fahrenheit) {
+    const f = Number.parseFloat(fahrenheit);
+    const c = ((f- 32) * 5) / 9;
+    console.log(`getCelsius: ${f} ---> ${c}`);
+    this.updateTemperature({celsius: c, fahrenheit: f});
+  }
+  updateTemperature(temp) {
+    this.setState({celsius: temp});
   }
   render() {
     return (
       <React.Fragment>
         <StatusContext.Provider value={this.state.celsius}>
+          <h1>Temperature Converter</h1>
           <ConvertForm
             celsius={this.state.celsius}
-            fahrenheit={this.state.fahrenheit}
-            getFahrenheit={this.getFahrenheit.bind(this)}
-            getCelsius={this.getCelsius.bind(this)}
+            fahrenheit={this.fahrenheit}
+            getFahrenheit={this.getFahrenheit}
+            getCelsius={this.getCelsius}
 
           />
         </StatusContext.Provider>

@@ -1,4 +1,5 @@
 import ConvertInput from "./ConvertInput";
+import ConvertStatus from "./ConvertStatus";
 
 const ConvertForm = props => {
     return (
@@ -10,6 +11,7 @@ const ConvertForm = props => {
                 <ConvertInput name={'fahrenheit'} label={'Fahrenheit'} 
                     convert={props.getCelsius} />
             </form>
+            <ConvertStatus />
         </div>
     );
 }
