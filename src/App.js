@@ -14,19 +14,30 @@ class App extends Component {
     this.getCelsius = this.getCelsius.bind(this);
   }
   getFahrenheit(celsius) {
+    if (!celsius) { 
+      this.setState({ celsius: 0, fahrenheit: 0});
+      return;
+    }
+    console.log('#getFahrenheit')
     const c = Number.parseFloat(celsius);
     const f = (c * 9) / 5 + 32;
     console.log(`getFahrenheit: ${c} ---> ${f}`);
     this.setState({ celsius: c, fahrenheit: f});
   }
   getCelsius(fahrenheit) {
+    if (!fahrenheit) { 
+      this.setState({ celsius: 0, fahrenheit: 0});
+      return;
+    }
+    console.log('#getCelsius')
     const f = Number.parseFloat(fahrenheit);
     const c = ((f- 32) * 5) / 9;
     console.log(`getCelsius: ${f} ---> ${c}`);
-    this.updateTemperature({celsius: c, fahrenheit: f});
+    this.setState({celsius: c, fahrenheit: f});
   }
   updateTemperature(temp) {
-    this.setState({celsius: temp});
+    this.setState(temp);
+    console.log(temp);
   }
   render() {
     return (
@@ -35,7 +46,7 @@ class App extends Component {
           <h1>Temperature Converter</h1>
           <ConvertForm
             celsius={this.state.celsius}
-            fahrenheit={this.fahrenheit}
+            fahrenheit={this.state.fahrenheit}
             getFahrenheit={this.getFahrenheit}
             getCelsius={this.getCelsius}
 

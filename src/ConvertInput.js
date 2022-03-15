@@ -1,8 +1,10 @@
 const ConvertInput = props => {
+    const { name, label, temp, convert } = props;
     return (
         <div>
-            <label for={props.name}>{props.label}: </label>
-            <input type="text" id={props.name} name={props.name} onBlur={() => props.convert(10)} />
+            <label htmlFor={name}>{label}: </label>
+            <input type="text" id={name} name={name} value={temp} 
+                onChange={e => {convert(e.target.value)}} />
         </div>
     );
 }

@@ -6,9 +6,9 @@ const ConvertForm = props => {
         <div>
             <h1>{props.children}</h1>
             <form>
-                <ConvertInput name={'celsius'} label={'Celsius'} 
-                    convert={props.getFarenheit} />
-                <ConvertInput name={'fahrenheit'} label={'Fahrenheit'} 
+                <ConvertInput name={'celsius'} label={'Celsius'} temp={props.celsius} 
+                    convert={props.getFahrenheit} />
+                <ConvertInput name={'fahrenheit'} label={'Fahrenheit'} temp={props.fahrenheit}
                     convert={props.getCelsius} />
             </form>
             <ConvertStatus />
